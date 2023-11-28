@@ -3,12 +3,10 @@
 </script>
 
 <template>
-  <div id="app">
-
+  <div id="app" class="bg-light" >
     <router-view />
   </div>
 </template>
-
 <style scoped>
 
 </style>
