@@ -2,9 +2,11 @@
 import {Web3} from "web3";
 import {ethers} from "ethers";
 import {callTestContract} from "@/contracts";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 
 export default {
   name: 'HomeView',
+  components: {HeaderComponent},
   data() {
     return {
       connected: false,
@@ -45,12 +47,13 @@ export default {
 
 <template>
   <main>
+    <header-component from="home"/>
     <div>
       <p></p>
       <button v-if="connected" @click.prevent="callTestContract" class="btn btn-primary">Call contract</button>
       {{ contractResult }}
       <p></p>
-      <button v-if="connected" @click.prevent="callChangeTextContract">Call change Text</button>
+      <button v-if="connected" @click.prevent="callChangeTextContract" class="btn btn-danger">Call change Text</button>
       {{ contractResult }}
       <p></p>
       <button v-if="connected" @click.prevent="clearValue">Clear value</button>

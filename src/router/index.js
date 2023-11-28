@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ClientOnboarding from "@/components/ClientOnboarding.vue";
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,11 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: "/onboarding",
+      name: "ClientOnboarding",
+      component: ClientOnboarding
     }
   ]
 })
