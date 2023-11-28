@@ -13,10 +13,13 @@ export default {
   <div>
     <HeaderComponent from="onboarding"/>
     <div class="container-fluid d-flex justify-content-center p-2">
-      <h1>Welcome to Client Onboarding</h1>
+      <h1>Client Onboarding Form</h1>
     </div>
     <ClientCommonInformation/>
     <ClientMIFIQuestionnaire/>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary">Save your information</button>
+    </div>
   </div>
 </template>
 
