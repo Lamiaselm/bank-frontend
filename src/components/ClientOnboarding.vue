@@ -2,6 +2,8 @@
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import ClientCommonInformation from "@/components/ClientCommonInformation.vue";
 import ClientMIFIQuestionnaire from "@/components/ClientMIFIQuestionnaire.vue";
+import axios from "axios";
+import {APIS_URL} from "@/apis";
 
 export default {
   name: "ClientOnboarding",
@@ -27,10 +29,22 @@ export default {
   methods: {
     updateClientData(data) {
       this.clientData = data
-//      console.log(JSON.stringify(this.clientData))
+      console.log(JSON.stringify(this.clientData))
     },
     updateMIFIDData(data) {
       this.MIFIDData = data
+    },
+    saveClientData() {
+      console.log("data: " + JSON.stringify(this.clientData))
+      axios.post(APIS_URL + "/onboarding", this.clientData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        console.log(response.data)
+      }).catch(error => {
+        console.error(error)
+      })
     }
   }
 }
@@ -45,7 +59,7 @@ export default {
     <ClientCommonInformation v-on:updateClientData="updateClientData"/>
     <ClientMIFIQuestionnaire v-on:updateMIFIDData="updateMIFIDData"/>
     <div class="d-flex justify-content-center">
-      <button class="btn btn-primary">Save your information</button>
+      <button class="btn btn-primary" @click.prevent="saveClientData">Save your information</button>
     </div>
   </div>
 </template>
