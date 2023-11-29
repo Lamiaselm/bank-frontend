@@ -36,7 +36,7 @@
           </a>
         </nav>
       </div>
-      <div class="container bg-light" style="padding-top:100px ;">
+      <div class="container fluid bg-light" style="padding-top:100px ;">
         <dashboard-view v-if="currentTab===0"/>
         <clients-view v-if="currentTab===1"/>
     </div>

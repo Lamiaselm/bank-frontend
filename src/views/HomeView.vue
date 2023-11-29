@@ -1,10 +1,14 @@
 <script>
 import {Web3} from "web3";
 import {ethers} from "ethers";
-import {callTestContract} from "@/contracts";
+import md5 from 'crypto-js/md5';
+import Base64 from 'crypto-js/enc-base64';
+import {storeNewClient, updateClient} from "@/contracts";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 
 export default {
   name: 'HomeView',
+  components: {HeaderComponent},
   data() {
     return {
       connected: false,
@@ -15,8 +19,16 @@ export default {
     this.connect()
   },
   methods: {
-    async callTestContract() {
-      this.contractResult = await callTestContract()
+    async storeNewClient(refClient, seller) {
+      const time = new Date().toLocaleString()
+      const hashProfile = md5(refClient + time)
+      console.log('hashProfile: ', Base64.stringify(hashProfile))
+      this.contractResult = await storeNewClient(refClient, Base64.stringify(hashProfile), seller, time)
+    },
+    async updateClient(refClient) {
+      const time = new Date().toLocaleString()
+      const hashProfile = md5(refClient + time)
+      this.contractResult = await updateClient(refClient, Base64.stringify(hashProfile), time)
     },
     clearValue() {
       this.contractResult = null
@@ -30,27 +42,19 @@ export default {
             });
       }
     },
-    async callChangeTextContract() {
-      const provider = new ethers.BrowserProvider(window.ethereum)
-      const signer = await provider.getSigner();
-      let abi = JSON.parse(`[ { "inputs": [ { "internalType": "string", "name": "newText", "type": "string" } ], "name": "changeText", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "greet", "outputs": [ { "internalType": "string", "name": "", "type": "string" } ], "stateMutability": "view", "type": "function" } ]`);
-      const contract = new ethers.Contract("0xCc4f72a03708CD9d2872e22c9b3E3828e669a9d3", abi, signer);
-      const result = await contract.changeText("Hello World!!").send();
-      console.log(result);
-      this.contractResult = result
-    }
   }
  }
 </script>
 
 <template>
   <main>
+    <header-component from="home"/>
     <div>
       <p></p>
-      <button v-if="connected" @click.prevent="callTestContract" class="btn btn-primary">Call contract</button>
+      <button v-if="connected" @click.prevent="storeNewClient('refClient2',  true)" class="btn btn-primary">Store new client</button>
       {{ contractResult }}
       <p></p>
-      <button v-if="connected" @click.prevent="callChangeTextContract">Call change Text</button>
+      <button v-if="connected" @click.prevent="updateClient('refClient2')" class="btn btn-danger">Update client</button>
       {{ contractResult }}
       <p></p>
       <button v-if="connected" @click.prevent="clearValue">Clear value</button>

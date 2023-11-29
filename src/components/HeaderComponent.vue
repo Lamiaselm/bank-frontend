@@ -1,37 +1,35 @@
 <script>
 export default {
-  name: "HeaderComponent"
+  name: "HeaderComponent",
+  props: {
+    from: String
+  }
 }
 </script>
 
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">LIST</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li> -->
-      </ul>
-      <span class="navbar-text">
-        <i class="bi bi-bank2 text-primary" style="font-size: 1.5em;"></i>
-        Bank
-      </span>
+  <div class="container-fluid text-center">
+    <div class="row background p-2">
+      <div class="col-2">
+        <img src="../assets/bank-logo.svg" class="img-fluid" alt="logo" width="70">
+      </div>
+      <div class="col d-flex align-items-center justify-content-center">
+        My BANK
+      </div>
+      <div class="col-2 d-flex align-items-center justify-content-center" v-if="from==='home'">
+        <router-link to="/onboarding" class="p-1 mx-1">Sign up</router-link>
+        <router-link to="/login" class="p-1 mx-1">Sign in</router-link>
+      </div>
+      <div class="col-2 d-flex align-items-center justify-content-center" v-if="from==='onboarding'">
+        <router-link to="/">Back</router-link>
+      </div>
+
     </div>
   </div>
-</nav>
 </template>
 
 <style scoped>
-
+.background {
+  background-color: #DAD3E0;
+}
 </style>

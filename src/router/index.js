@@ -4,6 +4,8 @@ import HomeView from '../views/HomeView.vue'
 // import BankView from '../views/BankView.vue'
 // import ClientView from '../views/ClientView.vue'
 import MainLayout from '../views/MainLayout.vue'
+import ClientLayout from '../views/ClientLayout.vue'
+import ClientOnboarding from "@/components/ClientOnboarding.vue";
 
 Vue.use(VueRouter)
 
@@ -21,6 +23,16 @@ const router = new VueRouter({
       name: 'bank',
       component: MainLayout
     },
+    {
+      path: '/client',
+      name: 'client',
+      component: ClientLayout
+    },
+    {
+      path: "/onboarding",
+      name: "ClientOnboarding",
+      component: ClientOnboarding
+    }
   ]
 })
 

@@ -12,21 +12,13 @@
         <nav class="nav">
           <div>
             <a href="#" class="nav_logo text-center" >
-              <i class="bi bi-bank"></i><br>
-              <span class="nav_logo-name" style="text-decoration: none;">Bank LIST</span>
+                <i class="bi bi-person-vcard"></i><br>
+              <span class="nav_logo-name" style="text-decoration: none;">User LIST</span>
             </a>
             <div class="nav_list">
-              <a href="#" class="nav_link" :class="{ active: activeLink === 'dashboard' }" @click="setActiveLink('dashboard')">
-                <i class="bi bi-speedometer2"></i>
-                <span class="nav_name">Dashboard</span>
-              </a>
-              <a href="#" class="nav_link" :class="{ active: activeLink === 'users' }" @click="setActiveLink('users')">
-                <i class="bi bi-people"></i>
-                <span class="nav_name">Users</span>
-              </a>
-              <a href="#" class="nav_link" :class="{ active: activeLink === 'transactions' }" @click="setActiveLink('transactions')">
-                <i class="bi bi-cash"></i>
-                <span class="nav_name">Transactions</span>
+              <a  href="#" class="nav_link" :class="{ active: activeLink === 'profile' }" @click="setActiveLink('profile'); setCurrentTab(0)">
+                <i class="bi bi-person-badge"></i>  
+                <span class="nav_name">Profile</span>
               </a>
             </div>
           </div>
@@ -36,18 +28,26 @@
           </a>
         </nav>
       </div>
-
+      <div class="container bg-light" style="padding-top:100px ;">
+        <profile-view v-if="currentTab===0"/>
     </div>
+    </div>
+  
   </template>
   
   <script>
+  import ProfileView from '../components/ProfileView.vue';
   export default {
+    components:{
+        "profile-view":ProfileView,
+    },
     data() {
       return {
         isSidebarOpen: false,
         isBodyPd: false,
         isHeaderPd: false,
-        activeLink: '', // Track the active link
+        activeLink: 'profile',
+        currentTab:0
       };
     },
     methods: {
@@ -62,6 +62,9 @@
       setActiveLink(link) {
         this.activeLink = link;
       },
+      setCurrentTab(tabIndex) {
+      this.currentTab = tabIndex;
+    },
     },
   };
   </script>
