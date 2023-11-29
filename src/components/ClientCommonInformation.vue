@@ -4,6 +4,8 @@ export default {
   data() {
     return {
       clientData: {
+        username:'',
+        password:'',
         firstNameClient: '',
         lastNameClient: '',
         birthDateClient: '',
@@ -11,7 +13,8 @@ export default {
         addressClient: '',
         cityClient: '',
         countryClient: '',
-        emailClient: ''
+        emailClient: '',
+        company:''
       }
     }
   },
@@ -24,11 +27,19 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid p-2 d-flex justify-content-center">
+  <div class="container-fluid p-2 d-flex justify-content-center bg-light" style="padding-top: 100px !important;">
     <div class="card" style="width: 32rem;">
       <div class="card-body">
-        <h5 class="card-title fw-bolder">Your information</h5>
+        <h5 class="card-title fw-bolder">Register Form</h5>
         <div class="card-text">
+          <div class="mb-3">
+            <label for="firstNameClient" class="form-label">Username</label>
+            <input type="text" class="form-control" id="firstNameClient" placeholder="Username" v-model="clientData.username" @input="updateClientData">
+          </div>
+          <div class="mb-3">
+            <label for="firstNameClient" class="form-label">Password</label>
+            <input type="password" class="form-control" id="firstNameClient" placeholder="Password" v-model="clientData.password" @input="updateClientData">
+          </div>
           <div class="mb-3">
             <label for="firstNameClient" class="form-label">First name</label>
             <input type="text" class="form-control" id="firstNameClient" placeholder="John" v-model="clientData.firstNameClient" @input="updateClientData">
@@ -60,6 +71,28 @@ export default {
           <div class="mb-3">
             <label for="emailClient" class="form-label">Email address</label>
             <input type="email" class="form-control" id="emailClient" placeholder="john.doe@example.com" v-model="clientData.emailClient" @input="updateClientData">
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <p>Company</p>
+            </div>
+            <div class="col">
+              <div class="input-group">
+                <div class="form-check" style="margin-right:10px">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="true" v-model="clientData.company" @change="updateClientData">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Yes
+                  </label>
+                </div>
+                &nbsp;
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="false" v-model="clientData.company" @change="updateClientData">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    No
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

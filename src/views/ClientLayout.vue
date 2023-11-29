@@ -50,6 +50,13 @@
         currentTab:0
       };
     },
+    mounted(){
+      let client_id=localStorage.getItem('client_id')
+      if(client_id){
+      }else{
+        this.$router.push('/login')
+      }
+  },
     methods: {
       toggleSidebar() {
         this.isSidebarOpen = !this.isSidebarOpen;

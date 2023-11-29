@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid p-2 d-flex justify-content-center">
+  <div class="container-fluid p-2 d-flex justify-content-center" style="padding-top: 100px !important;">
     <div class="card" style="width: 32rem;">
       <div class="card-body">
         <h5 class="card-title fw-bolder">Markets in Financial Instruments Directive</h5>

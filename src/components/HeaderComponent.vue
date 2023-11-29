@@ -2,14 +2,29 @@
 export default {
   name: "HeaderComponent",
   props: {
-    from: String
-  }
-}
+    from: String,
+  },
+};
 </script>
 
 <template>
   <div class="container-fluid text-center">
-    <div class="row background p-2">
+    <header class="header" style="padding-left: 40px">
+      <div class="header_toggle"><i class="bi bi-bank"></i> LIST Bank</div>
+      <!-- <div class="header_img">
+            <i class="bi bi-person-circle" style="font-size: 1.5em;"></i>
+        </div> -->
+      <div class="col-2 d-flex align-items-center justify-content-center hstack gap-3">
+        <button type="button" class="btn btn-info" >
+          <router-link style="text-decoration: none;color: white;" to="/onboarding" class="p-1 mx-1">Sign up</router-link>
+        </button>
+        
+        <button type="button" class="btn btn-outline-info" >
+        <router-link to="/login" class="p-1 mx-1" style="text-decoration: none;color: inherit;">Login</router-link>
+      </button>
+      </div>
+    </header>
+    <!-- <div class="row background p-2">
       <div class="col-2">
         <img src="../assets/bank-logo.svg" class="img-fluid" alt="logo" width="70">
       </div>
@@ -24,12 +39,12 @@ export default {
         <router-link to="/">Back</router-link>
       </div>
 
-    </div>
+    </div> -->
   </div>
 </template>
 
 <style scoped>
 .background {
-  background-color: #DAD3E0;
+  background-color: #dad3e0;
 }
 </style>
